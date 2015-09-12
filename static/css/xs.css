@@ -169,8 +169,8 @@ span{
 	height: 100%;
 	width: 100% !important;
 	padding: 0 !important;
-	overflow: scroll;
 	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
 }
 
 #header{
@@ -197,7 +197,7 @@ span{
 	height: 270px;
 	width: calc((100% / 4) - 20px);
 	min-width: 245px;
-	background-color: #FFFFFF;
+	background-color: #FFFFFF !important;
 	opacity: .9;
 	max-width: 280px;
 }
@@ -328,15 +328,15 @@ span{
 }
 
 .item-price{
-	font-size: 18px;
+	font-size: 14px;
 }
 
 .item-name{
-	font-size: 18px;
+	font-size: 14px;
 }
 
 .item-pipe{
-	font-size: 20px;
+	font-size: 16px;
 }
 
 .overlay{
@@ -361,9 +361,20 @@ span{
 }
 
 #brand-container{
-	font-size: 54px;
+	height: 100%;
+	width: 100%;
+	font-size: 48px;
 	color: #FFFFFF;
 	font-weight: bold;
+	border: 1px solid red;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
 }
 
 #preloader{
@@ -399,7 +410,7 @@ span{
 	border: 3px solid #FFFFFF;
 	background-color: transparent;
 	height: 50px;
-	font-size: 22px;
+	font-size: 20px;
 	width: 200px;
 	font-weight: bold;
 	color: #FFFFFF;
@@ -434,7 +445,7 @@ span{
 .nav-item {
 	position: relative;
 	display: inline-block;
-	font-size: 18px;
+	font-size: 14px;
     margin-left: 10px;
     margin-right: 10px;
     cursor: pointer;
@@ -469,6 +480,6 @@ span{
 	border: 2px solid #FFFFFF;
 	border-radius: 50%;
 	padding: 10px;
-	top: calc(100% - 70px);
-	left: calc(100% - 90px);
+	top: calc(100% - 50px);
+	left: calc(100% - 6F0px);
 }
