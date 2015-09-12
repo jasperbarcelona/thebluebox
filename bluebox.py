@@ -28,7 +28,7 @@ import os
 app = flask.Flask(__name__)
 db = SQLAlchemy(app)
 app.secret_key = '234234rfascasascqweqscasefsdvqwefe2323234dvsv'
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///local.db'
 # os.environ['DATABASE_URL']
 # 'sqlite:///local.db'
 class Item(db.Model):
@@ -91,10 +91,9 @@ def add_item_to_cart():
 
 @app.route('/cart/open', methods=['GET', 'POST'])
 def open_cart():
-    session['total'] = 0
     if not session:
         return flask.render_template('cart.html')
-
+    session['total'] = 0
     for i in session['cart_items']:
         session['total'] += int(i['price'])
     return flask.render_template('cart.html',cart=session['cart_items'],total=session['total'])
@@ -300,4 +299,4 @@ def rebuild_database():
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(port=int(os.environ['PORT']), host='0.0.0.0')
+    app.run()
