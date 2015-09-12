@@ -359,7 +359,7 @@ span{
 #brand-container{
 	height: 100%;
 	width: 100%;
-	font-size: 48px;
+	font-size: 38px;
 	color: #FFFFFF;
 	font-weight: bold;
 	display: -webkit-flex;
@@ -475,6 +475,6 @@ span{
 	border: 2px solid #FFFFFF;
 	border-radius: 50%;
 	padding: 10px;
-	right: 1em;
+	right: .5em;
 	bottom: .5em;
 }
