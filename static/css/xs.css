@@ -6,12 +6,13 @@
 
 html{
 	line-height: 1.2;
-	height: 100%;
 	width: 100%;
+	background-color: #FFFFFF;
 }
 body{
-	\position: fixed;
-	height: 100%;
+	position: relative;
+	overflow: scroll;
+	overflow-x: hidden;
 	width: 100%;
 	font-family: OpenSans, sans-serif;
 }
@@ -66,7 +67,6 @@ span{
 	align-items: center;
 	-webkit-justify-content: center;
 	justify-content: center;
-	
 }
 
 .cart-table{
@@ -109,6 +109,23 @@ span{
 
 .rows td img{
 	height: 150px;
+}
+
+#preloader{
+	position: absolute;
+	z-index: 5000;
+	height: 100%;
+	width: 100%;
+	background-color: #6D6D6D;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	color: #FFFFFF;
 }
 
 .cart-btn-container{
@@ -166,12 +183,10 @@ span{
 
 
 .container{
-	height: 100%;
 	width: 100% !important;
 	padding: 0 !important;
-	overflow: scroll;
-	overflow-x: hidden;
-	-webkit-overflow-scrolling: touch;
+/*	overflow: scroll;
+	overflow-x: hidden;*/
 }
 
 #header{
@@ -179,14 +194,6 @@ span{
 	width: 100%;
 	background: url('../images/bg2.jpg');
 	background-size: 100% 100%;
-	display: -webkit-flex;
-	display: flex;
-	-webkit-flex-direction: column;
-	flex-direction: column;
-	-webkit-align-items: center;
-	align-items: center;
-	-webkit-justify-content: center;
-	justify-content: center;
 }
 
 .item-container{
@@ -247,12 +254,6 @@ span{
 }
 
 #item-modal{
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	top: 0;
-	z-index: 2000;
-	background-color: rgba(73,73,73,.7);
 	display: -webkit-flex;
 	display: flex;
 	-webkit-flex-direction: row;
@@ -324,15 +325,15 @@ span{
 }
 
 .item-price{
-	font-size: 14px;
+	font-size: 1em;
 }
 
 .item-name{
-	font-size: 14px;
+	font-size: 1em;
 }
 
 .item-pipe{
-	font-size: 16px;
+	font-size: 1.1em;
 }
 
 .overlay{
@@ -375,28 +376,10 @@ span{
 	font-size: 3em;
 }
 
-#preloader{
-	position: absolute;
-	z-index: 5000;
-	height: 100%;
-	width: 100%;
-	background-color: #6D6D6D;
-	display: -webkit-flex;
-	display: flex;
-	-webkit-flex-direction: row;
-	flex-direction: row;
-	-webkit-align-items: center;
-	align-items: center;
-	-webkit-justify-content: center;
-	justify-content: center;
-	color: #FFFFFF;
-}
-
 #main{
 	position: relative;
 	float: left;
 	padding-top: 60px;
-	height: 100%;
 	min-height: 100%;
 	width: 100%;
 	padding-left: 10%;
@@ -408,7 +391,7 @@ span{
 	border: 3px solid #FFFFFF;
 	background-color: transparent;
 	height: 50px;
-	font-size: 20px;
+	font-size: 22px;
 	width: 200px;
 	font-weight: bold;
 	color: #FFFFFF;
@@ -443,9 +426,9 @@ span{
 .nav-item {
 	position: relative;
 	display: inline-block;
-	font-size: 14px;
-    margin-left: 10px;
-    margin-right: 10px;
+	font-size: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
     cursor: pointer;
 }
 
@@ -471,7 +454,7 @@ span{
 }
 
 .cart-icon{
-	position: absolute;
+	position: fixed;
 	z-index: 1000;
 	font-size: 25px;
 	color: #FFFFFF;
