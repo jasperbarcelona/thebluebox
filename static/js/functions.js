@@ -11,7 +11,7 @@ function supply_data(itemId){
         item_id:itemId,
     },
     function(data){
-        $("#item-modal").html(data);
+        $("#info-container").html(data);
         selected_size = $('.modal-item-size-active').attr('value')
     });
 }
