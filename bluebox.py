@@ -35,7 +35,7 @@ class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20))
     category = db.Column(db.String(20))
-    description = db.Column(db.String(300))
+    description = db.Column(db.String(1000))
     price = db.Column(db.String(5))
     image = db.Column(db.String(60))
 
