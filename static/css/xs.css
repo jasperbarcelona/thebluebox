@@ -191,21 +191,16 @@ span{
 
 .item-container{
 	position: relative;
-	margin-left: 5px;
-	margin-right: 5px;
-	margin-bottom: 30px;
-	display: inline-block;
-	height: 270px;
-	width: calc((100% / 4) - 20px);
-	min-width: 245px;
-	background-color: #FFFFFF !important;
+	margin-bottom: 20px;
+	height: 280px;
+	background-color: transparent;
 	opacity: .9;
-	max-width: 280px;
 }
 
 .item-container img{
 	height: 85%;
 	width: 85%;
+	max-width: 250px; 
 }
 
 #info-container{
@@ -367,7 +362,6 @@ span{
 	font-size: 48px;
 	color: #FFFFFF;
 	font-weight: bold;
-	border: 1px solid red;
 	display: -webkit-flex;
 	display: flex;
 	-webkit-flex-direction: column;
@@ -481,6 +475,6 @@ span{
 	border: 2px solid #FFFFFF;
 	border-radius: 50%;
 	padding: 10px;
-	top: calc(100% - 50px);
-	left: calc(100% - 6F0px);
+	right: 1em;
+	bottom: .5em;
 }
