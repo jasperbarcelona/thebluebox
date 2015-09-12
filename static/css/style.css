@@ -199,21 +199,16 @@ span{
 
 .item-container{
 	position: relative;
-	margin-left: 5px;
-	margin-right: 5px;
-	margin-bottom: 30px;
-	display: inline-block;
-	height: 270px;
-	width: calc((100% / 4) - 20px);
-	min-width: 245px;
+	margin-bottom: 20px;
+	height: 280px;
 	background-color: #FFFFFF;
 	opacity: .9;
-	max-width: 280px;
 }
 
 .item-container img{
 	height: 85%;
 	width: 85%;
+	max-width: 250px; 
 }
 
 #info-container{
@@ -382,7 +377,6 @@ span{
 	position: relative;
 	float: left;
 	padding-top: 60px;
-	height: 100%;
 	min-height: 100%;
 	width: 100%;
 	padding-left: 10%;
@@ -464,6 +458,6 @@ span{
 	border: 2px solid #FFFFFF;
 	border-radius: 50%;
 	padding: 10px;
-	top: calc(100% - 70px);
-	left: calc(100% - 90px);
+	right: 25px;
+	bottom: 10px;
 }

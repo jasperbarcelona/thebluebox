@@ -6,9 +6,9 @@ var category = ''
 $('#item-modal').hide();
 $('.overlay').hide();
 
-$(window).load(function() {
+/*$(window).load(function() {
     $('#preloader').fadeOut();
-});
+});*/
 
 /*$('.item-container').css("height","calc("+String($(window).height()/2) + "px - 70px)");*/
 

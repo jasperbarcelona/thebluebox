@@ -3,18 +3,21 @@
 		<meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no">
         <link rel="stylesheet" href="../static/css/bootstrap.min.css">
-
-        <link rel="stylesheet" media="screen and (min-width: 0px) and (max-width: 500px)" href="../static/css/xs.css">
-		<link rel="stylesheet" media="screen and (min-width: 500px) and (max-width: 2000px)" href="../static/css/style.css">
+        <link rel="stylesheet" href="../static/css/bootstrap.css.map">
+        <link rel="stylesheet" href="../static/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="../static/css/bootstrap-theme.css.map">
+		<link rel="stylesheet" href="../static/css/style.css">
         <title>TheBlueBox</title>
 	</head>
 	<body>
 		<div class="container">
-			<span class="cart-icon glyphicon glyphicon-shopping-cart" onclick="open_cart()"></span>
-			<div id="item-modal"></div>
-			<div id="preloader">
-				Put preloader gif here
+			<div class="cart-icon" onclick="open_cart()">
+				<span class="glyphicon glyphicon-shopping-cart"></span>
 			</div>
+			<div id="item-modal"></div>
+			<!-- <div id="preloader">
+				Put preloader gif here
+			</div> -->
 			<div id="header">
 				<div id="brand-container">
 					The Blue Box <br />
@@ -38,7 +41,7 @@
 				</div>
 				<br />
 				{% for i in items %}
-				<div id="{{i.id}}" class="item-container" onclick="supply_data(this.id)">
+				<div id="{{i.id}}" class="item-container col-sm-4 col-xs-12" onclick="supply_data(this.id)">
 					<div class="item-image-container">
 						<img src="{{i.image}}">
 					</div>
@@ -54,6 +57,7 @@
 
 		<script src="../static/js/jquery-1.11.0.min.js"></script>
         <script src="../static/js/animations.js"></script>
+        <script src="../static/js/bootstrap.min.js"></script>
         <script src="../static/js/functions.js"></script>
         <script src="../static/js/easing.js"></script>
         <script src="../static/js/jquery-ui.js"></script>
