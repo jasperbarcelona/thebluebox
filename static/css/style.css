@@ -332,15 +332,15 @@ span{
 }
 
 .item-price{
-	font-size: 18px;
+	font-size: 1.1em;
 }
 
 .item-name{
-	font-size: 18px;
+	font-size: 1.1em;
 }
 
 .item-pipe{
-	font-size: 20px;
+	font-size: 1.2em;
 }
 
 .overlay{
@@ -365,12 +365,22 @@ span{
 }
 
 #brand-container{
-	float: right;
-	margin-top: 230px;
-	margin-right: 200px;
-	font-size: 62px;
+	height: 100%;
+	width: 100%;
 	color: #FFFFFF;
 	font-weight: bold;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+.brand{
+	font-size: 5em;
 }
 
 #main{
@@ -423,9 +433,9 @@ span{
 .nav-item {
 	position: relative;
 	display: inline-block;
-	font-size: 18px;
-    margin-left: 10px;
-    margin-right: 10px;
+	font-size: 1.3em;
+    margin-left: 1em;
+    margin-right: 1em;
     cursor: pointer;
 }
 
@@ -458,6 +468,6 @@ span{
 	border: 2px solid #FFFFFF;
 	border-radius: 50%;
 	padding: 10px;
-	right: 25px;
-	bottom: 10px;
+	right: 1em;
+	bottom: .5em;
 }
