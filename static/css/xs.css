@@ -426,7 +426,7 @@ span{
 .nav-item {
 	position: relative;
 	display: inline-block;
-	font-size: 1em;
+	font-size: .9em;
     margin-left: 1em;
     margin-right: 1em;
     cursor: pointer;
