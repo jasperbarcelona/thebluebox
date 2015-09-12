@@ -8,11 +8,13 @@ html{
 	line-height: 1.2;
 	height: 100%;
 	width: 100%;
+	background-color: #FFFFFF;
 }
 body{
-	\position: fixed;
+	position: fixed;
 	height: 100%;
 	width: 100%;
+	background-color: #FFFFFF;
 	font-family: OpenSans, sans-serif;
 }
 
@@ -201,7 +203,7 @@ span{
 	position: relative;
 	margin-bottom: 20px;
 	height: 280px;
-	background-color: #FFFFFF;
+	background-color: transparent;
 	opacity: .9;
 }
 
