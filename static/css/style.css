@@ -6,13 +6,13 @@
 
 html{
 	line-height: 1.2;
-	height: 100%;
 	width: 100%;
 	background-color: #FFFFFF;
 }
 body{
-	position: fixed;
-	height: 100%;
+	position: relative;
+	overflow: scroll;
+	overflow-x: hidden;
 	width: 100%;
 	font-family: OpenSans, sans-serif;
 }
@@ -67,7 +67,6 @@ span{
 	align-items: center;
 	-webkit-justify-content: center;
 	justify-content: center;
-	
 }
 
 .cart-table{
@@ -184,11 +183,10 @@ span{
 
 
 .container{
-	height: 100%;
 	width: 100% !important;
 	padding: 0 !important;
-	overflow: scroll;
-	overflow-x: hidden;
+/*	overflow: scroll;
+	overflow-x: hidden;*/
 }
 
 #header{
@@ -256,12 +254,6 @@ span{
 }
 
 #item-modal{
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	top: 0;
-	z-index: 2000;
-	background-color: rgba(73,73,73,.7);
 	display: -webkit-flex;
 	display: flex;
 	-webkit-flex-direction: row;
@@ -462,7 +454,7 @@ span{
 }
 
 .cart-icon{
-	position: absolute;
+	position: fixed;
 	z-index: 1000;
 	font-size: 25px;
 	color: #FFFFFF;

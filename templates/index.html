@@ -15,7 +15,6 @@
 			<div class="cart-icon" onclick="open_cart()">
 				<span class="glyphicon glyphicon-shopping-cart"></span>
 			</div>
-			<div id="item-modal"></div>
 			<!-- <div id="preloader">
 				Put preloader gif here
 			</div> -->
@@ -42,7 +41,7 @@
 				</div>
 				<br />
 				{% for i in items %}
-				<div id="{{i.id}}" class="item-container col-sm-4 col-xs-12" onclick="supply_data(this.id)">
+				<div id="{{i.id}}" class="item-container col-sm-4 col-xs-12" data-toggle="modal" data-target="#item-modal" onclick="supply_data(this.id)">
 					<div class="item-image-container">
 						<img src="{{i.image}}">
 					</div>
@@ -56,8 +55,17 @@
 			</div>
 		</div>
 
+		<div class="modal fade" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog message-modal-dialog">
+                        <div class="modal-content">
+                                
+                        </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+        </div>
+
 		<script src="../static/js/jquery-1.11.0.min.js"></script>
         <script src="../static/js/animations.js"></script>
+        <script src="../static/js/jquery.scrollTo.min.js"></script>
         <script src="../static/js/bootstrap.min.js"></script>
         <script src="../static/js/functions.js"></script>
         <script src="../static/js/easing.js"></script>

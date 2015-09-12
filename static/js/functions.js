@@ -17,7 +17,7 @@ function supply_data(itemId){
 }
 
 function close_modal(){
-  $("#item-modal").fadeOut();
+  $("#item-modal").modal('toggle');
 }
 
 function open_cart(){
@@ -33,7 +33,7 @@ function add_to_cart(itemId){
         item_id:itemId,size:selected_size
     },
     function(data){
-        $("#item-modal").fadeOut();
+        $("#item-modal").modal("toggle");
         var cart = $('.cart-icon');
         var imgtodrag = $("#modal-item-image").eq(0);
         if (imgtodrag) {
