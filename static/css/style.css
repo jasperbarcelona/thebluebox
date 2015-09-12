@@ -111,6 +111,23 @@ span{
 	height: 150px;
 }
 
+#preloader{
+	position: absolute;
+	z-index: 5000;
+	height: 100%;
+	width: 100%;
+	background-color: #6D6D6D;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	color: #FFFFFF;
+}
+
 .cart-btn-container{
 	height: 45px;
 	width: 100%;
