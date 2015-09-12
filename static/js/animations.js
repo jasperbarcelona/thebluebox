@@ -3,7 +3,6 @@ $(document).ready(function(){
 var ready = true;
 var category = ''
 /*$('.item-container').hide();*/
-$('#item-modal').hide();
 $('.overlay').hide();
 
 /*$(window).load(function() {
