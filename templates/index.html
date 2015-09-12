@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+
+        <link rel="stylesheet" media="screen and (min-width: 0px) and (max-width: 500px)" href="../static/css/xs.css">
+		<link rel="stylesheet" media="screen and (min-width: 500px) and (max-width: 2000px)" href="../static/css/style.css">
+        <title>TheBlueBox</title>
+	</head>
+	<body>
+		<div class="container">
+			<span class="cart-icon glyphicon glyphicon-shopping-cart" onclick="open_cart()"></span>
+			<div id="item-modal"></div>
+			<div id="header">
+				<div id="brand-container">
+					<div id="brand">
+						The Blue Box <br />
+					</div>
+					<center>
+					<button id="shop-btn" type="button" class="btn">Shop Now</button>
+					</center>
+				</div>
+			</div>
+			<div id="main">
+				<div id="navigation">
+					<ul>
+						<li class="nav-item active-nav-item">SHIRTS</li>
+				        <li class="nav-item">PANTS</li>
+				        <li class="nav-item">SHOES</li>
+				        <li class="nav-item">ACCESSORIES</li>
+						<!-- <div id="nav-cart-container" class="nav-item">
+							<li id="nav-cart">SHOPPING CART</li>
+							<div class="notification-bubble">2</div>
+						</div> -->
+					</ul>
+				</div>
+				<br />
+				{% for i in items %}
+				<div id="{{i.id}}" class="item-container" onclick="supply_data(this.id)">
+					<div class="item-image-container">
+						<img src="{{i.image}}">
+					</div>
+					<div class="item-info-container">
+						<span class="item-name">{{i.name}}</span>
+						<span class="item-pipe">|</span>
+						<span class="item-price"><font color="red">&#8369;</font>{{i.price}}</span>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+
+		<script src="../static/js/jquery-1.11.0.min.js"></script>
+        <script src="../static/js/animations.js"></script>
+        <script src="../static/js/functions.js"></script>
+        <script src="../static/js/easing.js"></script>
+        <script src="../static/js/jquery-ui.js"></script>
+	</body>
+</html>
