@@ -3,45 +3,47 @@
 		<button type="button" class="btn btn-danger cart-btn">Continue Shopping</button>
 		<button type="button" class="btn btn-danger cart-btn">Checkout</button>
 	</div> -->
-	<table class="cart-table">
-		<th class="item-image-td"></th>
-		<th class="item-name-th">Item</th>
-		<th class="item-qty-th">Quantity</th>
-		<th class="item-price-th">Price</th>
-		{% for i in cart %}
-		<tr class="rows">
-			<td class="item-image-td">
-				<img src="{{i.image}}">
-			</td>
-			<td class="item-name-td">
-				<span class="cart-item-name">{{i.name}}</span><br />
-				Size: {{i.size}}
-			</td>
-			<td class="item-qty-td">
-				<span class="cart-item-qty">{{i.quantity}}</span>
-			</td>
-			<td class="item-price-td">
-				<span class="cart-item-price"><font color="red">&#8369;</font>{{i.price}}</span>
-			</td>
-		</tr>
-		{% endfor %}
-		<tr class="rows">
-			<td class="item-image-td">
-			</td>
-			<td class="item-name-td">
-			</td>
-			<td class="item-total-label">
-				<span class="minor">Shipping fee:</span><br />
-				<span class="minor">Other fees:</span><br />
-				<span class="total-label highlight">Total:</span>
-			</td>
-			<td class="item-total">
-			<span class="minor"><font color="red">&#8369;</font>0.00</span><br />
-			<span class="minor"><font color="red">&#8369;</font>0.00</span><br />
-			<span class="total highlight"><font color="red">&#8369;</font>{{total}}.00</span>
-			</td>
-		</tr>
-	</table>
+	<div id="table-container">
+		<table class="cart-table">
+			<th class="item-image-td"></th>
+			<th class="item-name-th">Item</th>
+			<th class="item-qty-th">Quantity</th>
+			<th class="item-price-th">Price</th>
+			{% for i in cart %}
+			<tr class="rows">
+				<td class="item-image-td">
+					<img src="{{i.image}}">
+				</td>
+				<td class="item-name-td">
+					<span class="cart-item-name">{{i.name}}</span><br />
+					Size: {{i.size}}
+				</td>
+				<td class="item-qty-td">
+					<span class="cart-item-qty">{{i.quantity}}</span>
+				</td>
+				<td class="item-price-td">
+					<span class="cart-item-price"><font color="red">&#8369;</font>{{i.price}}</span>
+				</td>
+			</tr>
+			{% endfor %}
+			<tr class="rows">
+				<td class="item-image-td">
+				</td>
+				<td class="item-name-td">
+				</td>
+				<td class="item-total-label">
+					<span class="minor">Shipping fee:</span><br />
+					<span class="minor">Other fees:</span><br />
+					<span class="total-label highlight">Total:</span>
+				</td>
+				<td class="item-total">
+				<span class="minor"><font color="red">&#8369;</font>0.00</span><br />
+				<span class="minor"><font color="red">&#8369;</font>0.00</span><br />
+				<span class="total highlight"><font color="red">&#8369;</font>{{total}}.00</span>
+				</td>
+			</tr>
+		</table>
+	</div>
 	<div class="cart-btn-container bottom">
 		<button type="button" class="btn btn-danger cart-btn">Continue Shopping</button>
 		<button type="button" class="btn btn-danger cart-btn">Checkout</button>
