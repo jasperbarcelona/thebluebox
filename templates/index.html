@@ -6,8 +6,8 @@
         <link rel="stylesheet" href="../static/css/bootstrap.css.map">
         <link rel="stylesheet" href="../static/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="../static/css/bootstrap-theme.css.map">
-		<link rel="stylesheet" media="screen and (min-width: 0px) and (max-width: 500px)" href="../static/css/xs.css">
-		<link rel="stylesheet" media="screen and (min-width: 500px) and (max-width: 1500px)" href="../static/css/style.css">
+		<link rel="stylesheet" media="screen and (min-width: 0px) and (max-width: 768px)" href="../static/css/xs.css">
+		<link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1500px)" href="../static/css/style.css">
         <title>TheBlueBox</title>
 	</head>
 	<body>
@@ -18,7 +18,10 @@
 			<!-- <div id="preloader">
 				Put preloader gif here
 			</div> -->
+
 			<div id="header">
+			<div id="black-overlay"></div>
+			<div id="header-background"></div>
 				<div id="brand-container">
 					<span class="brand">The Blue Box</span><br />
 					<center>
@@ -41,27 +44,26 @@
 				</div>
 				<br />
 				{% for i in items %}
-				<div id="{{i.id}}" class="item-container col-sm-4 col-xs-12" data-toggle="modal" data-target="#item-modal" onclick="supply_data(this.id)">
+				<div id="{{i.id}}" class="item-container col-md-3 col-sm-4 col-xs-6" data-toggle="modal" onclick="supply_data(this.id)">
 					<div class="item-image-container">
 						<img src="{{i.image}}">
 					</div>
 					<div class="item-info-container">
 						<span class="item-name">{{i.name}}</span>
 						<span class="item-pipe">|</span>
-						<span class="item-price"><font color="red">&#8369;</font>{{i.price}}</span>
+						<span class="item-price">&#8369;{{i.price}}.00</span>
 					</div>
 				</div>
 				{% endfor %}
 			</div>
+			<div id="item-modal">
+	                <div class="item-modal-dialog">
+	                        <div class="modal-content">
+	                                <div id="info-container"></div>
+	                        </div><!-- /.modal-content -->
+	                </div><!-- /.modal-dialog -->
+	        </div>
 		</div>
-
-		<div class="modal fade" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog item-modal-dialog">
-                        <div class="modal-content">
-                                <div id="info-container"></div>
-                        </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-        </div>
 
 		<script src="../static/js/jquery-1.11.0.min.js"></script>
         <script src="../static/js/animations.js"></script>

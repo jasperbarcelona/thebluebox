@@ -7,6 +7,7 @@ function select_size(buttonId){
 }
 
 function supply_data(itemId){
+  $('#item-modal').fadeIn();
   $.post('/item/info/get',{
         item_id:itemId,
     },
@@ -17,13 +18,26 @@ function supply_data(itemId){
 }
 
 function close_modal(){
-  $("#item-modal").modal('toggle');
+  $("#item-modal").fadeOut();
 }
 
 function open_cart(){
+  $("body").scrollTo('#main',1000);
   $.post('/cart/open',
     function(data){
         $("#main").html(data);
+    });
+}
+
+function quantity_control(id,operation){
+    qty = $('#'+id).text();
+    $.post('/quantity/control',{
+        item_id:id,quantity:qty,operation:operation
+    },
+    function(data){
+        $('#'+id).html(data.quantity);
+        $('.'+id).html(data.item_price);
+        $('#cart-total').html(data.total);
     });
 }
 
@@ -33,7 +47,7 @@ function add_to_cart(itemId){
         item_id:itemId,size:selected_size
     },
     function(data){
-        $("#item-modal").modal("toggle");
+        $("#item-modal").fadeOut("toggle");
         var cart = $('.cart-icon');
         var imgtodrag = $("#modal-item-image").eq(0);
         if (imgtodrag) {

@@ -15,6 +15,9 @@ body{
 	overflow-x: hidden;
 	width: 100%;
 	font-family: OpenSans, sans-serif;
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+  	-moz-user-select: none;     /* Firefox all */
+  	-ms-user-select: none;
 }
 
 ul{
@@ -29,13 +32,21 @@ span{
 #navigation{
 	position: absolute;
 	z-index: 1000;
-	background-color: transparent;
+	background-color: #FFFFFF;
 	color: #000000;
+	padding-top: 10px;
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 50px;
-	padding-top: 20px;
+	height: 60px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
 }
 
 /*.nav-item{
@@ -198,10 +209,10 @@ span{
 
 .item-container{
 	position: relative;
-	margin-bottom: 20px;
-	height: 280px;
 	background-color: transparent;
+	margin-bottom: 10px;
 	opacity: .9;
+	min-width: 150px;
 }
 
 .item-container img{
@@ -251,17 +262,6 @@ span{
 	justify-content: center;
 	padding-bottom: 20px;
 	overflow: auto;
-}
-
-#item-modal{
-	display: -webkit-flex;
-	display: flex;
-	-webkit-flex-direction: row;
-	flex-direction: row;
-	-webkit-align-items: center;
-	align-items: center;
-	-webkit-justify-content: center;
-	justify-content: center;
 }
 
 .labels{
@@ -325,15 +325,15 @@ span{
 }
 
 .item-price{
-	font-size: 1em;
+	font-size: .8em;
 }
 
 .item-name{
-	font-size: 1em;
+	font-size: .8em;
 }
 
 .item-pipe{
-	font-size: 1.1em;
+	font-size: 1em;
 }
 
 .overlay{
@@ -379,7 +379,7 @@ span{
 #main{
 	position: relative;
 	float: left;
-	padding-top: 60px;
+	padding-top: 40px;
 	min-height: 100%;
 	width: 100%;
 	padding-left: 10%;

@@ -1,51 +1,53 @@
 <div id="cart-container">
-	<!-- <div class="cart-btn-container">
-		<button type="button" class="btn btn-danger cart-btn">Continue Shopping</button>
-		<button type="button" class="btn btn-danger cart-btn">Checkout</button>
-	</div> -->
-	<div id="table-container">
+	<center>
 		<table class="cart-table">
-			<th class="item-image-td"></th>
-			<th class="item-name-th">Item</th>
-			<th class="item-qty-th">Quantity</th>
-			<th class="item-price-th">Price</th>
-			{% for i in cart %}
-			<tr class="rows">
-				<td class="item-image-td">
-					<img src="{{i.image}}">
-				</td>
-				<td class="item-name-td">
-					<span class="cart-item-name">{{i.name}}</span><br />
-					Size: {{i.size}}
-				</td>
-				<td class="item-qty-td">
-					<span class="cart-item-qty">{{i.quantity}}</span>
-				</td>
-				<td class="item-price-td">
-					<span class="cart-item-price"><font color="red">&#8369;</font>{{i.price}}</span>
-				</td>
-			</tr>
-			{% endfor %}
-			<tr class="rows">
-				<td class="item-image-td">
-				</td>
-				<td class="item-name-td">
-				</td>
-				<td class="item-total-label">
-					<span class="minor">Shipping fee:</span><br />
-					<span class="minor">Other fees:</span><br />
-					<span class="total-label highlight">Total:</span>
-				</td>
-				<td class="item-total">
-				<span class="minor"><font color="red">&#8369;</font>0.00</span><br />
-				<span class="minor"><font color="red">&#8369;</font>0.00</span><br />
-				<span class="total highlight"><font color="red">&#8369;</font>{{total}}.00</span>
-				</td>
-			</tr>
+			<thead>
+				<tr>
+					<th class="item-image-td"></th>
+					<th class="item-info-td">PRODUCT</th>
+					<th class="item-qty-td">QUANTITY</th>
+					<th class="item-price-td">PRICE</th>
+					<th class="item-del-td"><span class="glyphicon glyphicon-trash"></span></th>
+				</thead>
+				</tr>
+			<tbody>
+				{% for item in cart %}
+				<tr class="rows">
+					<td class="item-image-td">
+						<center>
+							<img id="cart-item-image" src="{{item.image}}">
+						</center>
+					</td>
+					<td class="item-info-td">
+						<span id="cart-item-name">{{item.name}}</span><br />
+						<span id="cart-item-size">Size: {{item.size}}</span>
+					</td>
+					<td class="item-qty-td">
+						<span class="quantity-control quantity-minus" onclick="quantity_control('cart-'+{{(item.id)}}, 'deduct')">-</span>
+						 <span id="cart-{{(item.id)}}" class="cart-item-qty">{{item.quantity}}</span>
+						<span class="quantity-control quantity-add" onclick="quantity_control('cart-'+{{(item.id)}}, 'add')">+</span>
+					</td>
+					<td class="item-price-td">
+						&#8369;<span class="cart-{{(item.id)}}" price="{{item.price}}">{{item.price|int * item.quantity|int}}</span>.00
+					</td>
+					<td class="item-del-td">
+						<span id="{{item.id}}" class="glyphicon glyphicon-trash"></span>
+					</td>
+				</tr>
+				{% endfor %}
+				<table class="total-table">
+					<tr class="total-tr">
+						<td class="total-td">
+							TOTAL:
+						</td>
+						<td class="total-td">
+							&#8369;<span id="cart-total">{{total}}</span>.00
+						</td>
+					</tr>
+				</table>
+			</tbody>
 		</table>
-	</div>
-	<div class="cart-btn-container bottom">
-		<button type="button" class="btn btn-danger cart-btn">Continue Shopping</button>
-		<button type="button" class="btn btn-danger cart-btn">Checkout</button>
-	</div>
+	</center>
 </div>
+
+

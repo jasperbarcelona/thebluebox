@@ -36,7 +36,7 @@ class Item(db.Model):
     name = db.Column(db.String(20))
     category = db.Column(db.String(20))
     description = db.Column(db.String(1000))
-    price = db.Column(db.String(5))
+    price = db.Column(db.Integer())
     image = db.Column(db.String(60))
 
 class IngAdmin(sqla.ModelView):
@@ -44,8 +44,17 @@ class IngAdmin(sqla.ModelView):
 admin = Admin(app)
 admin.add_view(IngAdmin(Item, db.session))
 
+def search_list(values, searchFor):
+    for k in values:
+        if k['id'] == searchFor:
+            return k
+    return None
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index_route():
+    if session:
+        print session['cart_items']
     pants = Item.query.filter_by(category="pants").all()
     return flask.render_template('index.html',items=pants)
 
@@ -70,6 +79,7 @@ def add_item_to_cart():
     item = Item.query.filter_by(id=item_id).first()
     if not session:
         session['cart_items'] = [{
+            "id":item.id,
             "name":item.name,
             "size":size,
             "quantity":'1',
@@ -79,6 +89,7 @@ def add_item_to_cart():
         print session['cart_items']
     else:
         session['cart_items'].append({
+            "id":item.id,
             "name":item.name,
             "size":size,
             "quantity":'1',
@@ -95,13 +106,37 @@ def open_cart():
         return flask.render_template('cart.html')
     session['total'] = 0
     for i in session['cart_items']:
-        session['total'] += int(i['price'])
-    return flask.render_template('cart.html',cart=session['cart_items'],total=session['total'])
+        session['total'] += (int(i['price']) * int(i['quantity']))
+    return flask.render_template('cart.html',cart=session['cart_items'], total=session['total'])
 
 
 @app.route('/favicon.ico', methods=['GET', 'POST'])
 def favicon():
     return '',200
+
+
+@app.route('/quantity/control', methods=['GET', 'POST'])
+def control_quantity():
+    item_id = flask.request.form.get('item_id')
+    quantity = int(flask.request.form.get('quantity'))
+    operation = flask.request.form.get('operation')
+
+    item = Item.query.filter_by(id=item_id[5:]).first()
+
+    if operation == 'add':
+        quantity += 1
+    else:
+        if quantity > 1:
+            quantity -= 1
+
+    index = search_list(session['cart_items'],int(item_id[5:]))
+    index['quantity'] = quantity
+
+    session['total'] = 0
+
+    for i in session['cart_items']:
+        session['total'] += (int(i['price']) * int(i['quantity']))
+    return jsonify(quantity=quantity,item_price=quantity*item.price,total=session['total']),200
 
 
 @app.route('/db/rebuild', methods=['GET', 'POST'])
@@ -112,13 +147,8 @@ def rebuild_database():
     item = Item(
         name="Eric Coston SW",
         category="pants",
-        description="ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        price="260",
+        description="The ED-55 is our most popular style, a relaxed tapered fit with a mid-rise. Due to its versatility it can be worn in many different ways and suits a wide range of body shapes.",
+        price=260,
         image="../static/images/pants.jpg"
         )
     db.session.add(item)
@@ -128,7 +158,7 @@ def rebuild_database():
         name="Eric Coston SW",
         category="pants",
         description="This is the item's description.",
-        price="260",
+        price=260,
         image="../static/images/pants1.jpg"
         )
     db.session.add(item)
@@ -138,7 +168,7 @@ def rebuild_database():
         name="Eric Coston SW",
         category="pants",
         description="This is the item's description.",
-        price="260",
+        price=260,
         image="../static/images/pants2.jpg"
         )
     db.session.add(item)
@@ -148,7 +178,7 @@ def rebuild_database():
         name="Eric Coston SW",
         category="pants",
         description="This is the item's description.",
-        price="260",
+        price=260,
         image="../static/images/pants3.jpg"
         )
     db.session.add(item)
@@ -158,7 +188,7 @@ def rebuild_database():
         name="Eric Coston SW",
         category="pants",
         description="This is the item's description.",
-        price="260",
+        price=260,
         image="../static/images/pants4.jpg"
         )
     db.session.add(item)
@@ -168,7 +198,7 @@ def rebuild_database():
         name="Eric Coston SW",
         category="pants",
         description="This is the item's description.",
-        price="260",
+        price=260,
         image="../static/images/pants5.jpg"
         )
     db.session.add(item)
@@ -178,7 +208,7 @@ def rebuild_database():
         name="Eric Coston SW",
         category="pants",
         description="This is the item's description.",
-        price="260",
+        price=260,
         image="../static/images/pants.jpg"
         )
     db.session.add(item)
@@ -188,7 +218,7 @@ def rebuild_database():
         name="Eric Coston SW",
         category="shirts",
         description="This is the item's description.",
-        price="260",
+        price=260,
         image="../static/images/pants1.jpg"
         )
     db.session.add(item)
@@ -198,7 +228,7 @@ def rebuild_database():
         name="Eric Coston SW",
         category="shirts",
         description="This is the item's description.",
-        price="260",
+        price=260,
         image="../static/images/pants2.jpg"
         )
     db.session.add(item)
@@ -208,7 +238,7 @@ def rebuild_database():
         name="Eric Coston SW",
         category="shirts",
         description="This is the item's description.",
-        price="260",
+        price=260,
         image="../static/images/pants3.jpg"
         )
     db.session.add(item)
@@ -218,7 +248,7 @@ def rebuild_database():
         name="Eric Coston SW",
         category="shirts",
         description="This is the item's description.",
-        price="260",
+        price=260,
         image="../static/images/pants4.jpg"
         )
     db.session.add(item)
@@ -228,7 +258,7 @@ def rebuild_database():
         name="Eric Coston SW",
         category="shoes",
         description="This is the item's description.",
-        price="260",
+        price=260,
         image="../static/images/pants5.jpg"
         )
     db.session.add(item)
@@ -238,7 +268,7 @@ def rebuild_database():
         name="Eric Coston SW",
         category="shoes",
         description="This is the item's description.",
-        price="260",
+        price=260,
         image="../static/images/pants.jpg"
         )
     db.session.add(item)
@@ -248,7 +278,7 @@ def rebuild_database():
         name="Eric Coston SW",
         category="shoes",
         description="This is the item's description.",
-        price="260",
+        price=260,
         image="../static/images/pants1.jpg"
         )
     db.session.add(item)
@@ -258,7 +288,7 @@ def rebuild_database():
         name="Eric Coston SW",
         category="shoes",
         description="This is the item's description.",
-        price="260",
+        price=260,
         image="../static/images/pants2.jpg"
         )
     db.session.add(item)
@@ -268,7 +298,7 @@ def rebuild_database():
         name="Eric Coston SW",
         category="pants",
         description="This is the item's description.",
-        price="260",
+        price=260,
         image="../static/images/pants3.jpg"
         )
     db.session.add(item)
@@ -278,7 +308,7 @@ def rebuild_database():
         name="Eric Coston SW",
         category="pants",
         description="This is the item's description.",
-        price="260",
+        price=260,
         image="../static/images/pants4.jpg"
         )
     db.session.add(item)
@@ -288,7 +318,7 @@ def rebuild_database():
         name="Eric Coston SW",
         category="pants",
         description="This is the item's description.",
-        price="260",
+        price=260,
         image="../static/images/pants5.jpg"
         )
     db.session.add(item)
