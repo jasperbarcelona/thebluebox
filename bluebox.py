@@ -28,7 +28,7 @@ import os
 app = flask.Flask(__name__)
 db = SQLAlchemy(app)
 app.secret_key = '234234rfascasascqweqscasefsdvqwefe2323234dvsv'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///local.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 # os.environ['DATABASE_URL']
 # 'sqlite:///local.db'
 class Item(db.Model):
@@ -329,4 +329,4 @@ def rebuild_database():
 
 if __name__ == '__main__':
     app.debug = True
-    app.run()
+    app.run(port=int(os.environ['PORT']), host='0.0.0.0')
