@@ -50,14 +50,14 @@ $("#shop-btn").click(function() {
 $(window).on('scroll', function(){
     st = $(this).scrollTop();
     $('#black-overlay').css('opacity',st/$('#black-overlay').height()-.2);
-    $('#header-background').css('top',-st/2);
+    $('#header-background').css('top',-st/3);
     if(st >= 2){
-        $(".cart-icon").css("color","#6D6D6D");
-        $(".cart-icon").css("border","1px solid #6D6D6D");
+        $(".cart-icon").css("color","#1E2226");
+        $(".cart-icon").css("border","2px solid #1E2226");
     }
     else if (st<2){
         $(".cart-icon").css("color","#FFFFFF");
-        $(".cart-icon").css("border","1px solid #FFFFFF");
+        $(".cart-icon").css("border","2px solid #FFFFFF");
     }
 
     if (st >= $('#header').height()){

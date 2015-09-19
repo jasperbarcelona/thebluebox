@@ -25,7 +25,7 @@
 				<div id="brand-container">
 					<span class="brand">The Blue Box</span><br />
 					<center>
-					<button id="shop-btn" type="button" class="btn">Shop Now</button>
+					<button id="shop-btn" type="button" class="btn">SHOP NOW</button>
 					</center>
 				</div>
 			</div>
@@ -44,7 +44,7 @@
 				</div>
 				<br />
 				{% for i in items %}
-				<div id="{{i.id}}" class="item-container col-md-3 col-sm-4 col-xs-6" data-toggle="modal" onclick="supply_data(this.id)">
+				<div id="{{i.id}}" class="item-container col-md-3 col-sm-4 col-xs-12" data-toggle="modal" onclick="supply_data(this.id)">
 					<div class="item-image-container">
 						<img src="{{i.image}}">
 					</div>

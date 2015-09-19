@@ -1,5 +1,6 @@
 <div id="cart-container">
 	<center>
+		<span id="cart-brand">SHOPPING CART</span>
 		<table class="cart-table">
 			<thead>
 				<tr>
@@ -7,7 +8,7 @@
 					<th class="item-info-td">PRODUCT</th>
 					<th class="item-qty-td">QUANTITY</th>
 					<th class="item-price-td">PRICE</th>
-					<th class="item-del-td"><span class="glyphicon glyphicon-trash"></span></th>
+					<th class="item-del-td"></th>
 				</thead>
 				</tr>
 			<tbody>
@@ -35,19 +36,29 @@
 					</td>
 				</tr>
 				{% endfor %}
-				<table class="total-table">
-					<tr class="total-tr">
-						<td class="total-td">
-							TOTAL:
-						</td>
-						<td class="total-td">
-							&#8369;<span id="cart-total">{{total}}</span>.00
-						</td>
-					</tr>
-				</table>
 			</tbody>
 		</table>
+		<table class="total-table">
+			<tr class="total-tr">
+				<td class="total-td total-label-td">
+					TOTAL:
+				</td>
+				<td class="total-td total-amount-td">
+					&#8369;<span id="cart-total">{{total}}</span>.00
+				</td>
+			</tr>
+		</table>
+		<div id="cart-btn-container">
+			<button type="button" id="continue-shopping" class="btn cart-btn">CONTINUE SHOPPING</button>
+			<button type="button" id="proceed-to-checkout" class="btn cart-btn">PROCEED TO CHECKOUT</button>
+		</div>
 	</center>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#cart-container').css('height',($('#header').height()));
+	})
+</script>
 
 

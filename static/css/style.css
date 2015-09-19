@@ -7,13 +7,15 @@
 html{
 	line-height: 1.2;
 	width: 100%;
+	height: 100%;
 	background-color: #FDFDFD;
 }
+
 body{
-	position: relative;
 	overflow: scroll;
 	overflow-x: hidden;
 	width: 100%;
+	height: 100%;
 	overflow: scroll;
 	overflow-x: hidden; 
 	font-family: OpenSans, sans-serif;
@@ -42,6 +44,13 @@ span{
 	width: 80%;
 }
 
+#cart-btn-container{
+	height: 55px;
+	width: 100%;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
 .total-td{
 	font-weight: bold;
 	height: 60px !important;
@@ -49,6 +58,14 @@ span{
 	border-top: none !important;
 	font-size: 20px;
 	width: 50%;
+}
+
+.total-label-td{
+	border-right: none !important;
+}
+
+.total-amount-td{
+	border-left: none !important;
 }
 
 #navigation{
@@ -109,16 +126,30 @@ span{
 	margin-top: 50px;
 }
 
+#cart-brand{
+	font-size: 28px;
+	font-weight: bold;
+}
+
 .cart-btn{
 	width: 230px;
-	float: left;
 	height: 100%;
 	margin-left: 20px;
 	margin-right: 20px;
-	background-color: #FFFFFF;
-	color: #1E2226;
 	border: 2px solid #1E2226;
+	font-weight: bold;
+	font-size: 12px;
 	border-radius: 0 !important;
+}
+
+#continue-shopping{
+	background-color: transparent;
+	color: #1E2226;
+}
+
+#proceed-to-checkout{
+	background-color: #1E2226;
+	color: #FFFFFF;
 }
 
 .item-name-td,.item-name-th{
@@ -227,9 +258,17 @@ span{
 	justify-content: center;
 }
 
+.extra-break{
+	display: none;
+}
+
 #info-left img{
 	height: 90%;
 	width: 100%;
+}
+
+#info-left .labels{
+	display: none;
 }
 
 #info-right{
@@ -374,8 +413,10 @@ span{
 }
 
 .cart-table{
+	margin-top: 30px;
 	background-color: #FFFFFF !important;
 	width: 80%;
+	margin-bottom: 1px;
 }
 
 td, th{
@@ -390,7 +431,6 @@ td, th{
 
 .item-info-td{
 	text-align: left;
-	width: 400px;
 	padding-left: 20px;
 	padding-right: 20px;
 }
@@ -430,7 +470,7 @@ thead tr{
 	left: 0;
 	top: 0;
 	padding-top: 40px;
-	min-height: 100%;
+	min-height: 100% !important;
 	background-color: #F3F3F3;
 	width: 100%;
 	text-align: center !important;
@@ -488,7 +528,7 @@ thead tr{
 	border: 3px solid #FFFFFF;
 	background-color: transparent;
 	height: 50px;
-	font-size: 18px;
+	font-size: 16px;
 	width: 200px;
 	font-weight: bold;
 	color: #FFFFFF;
@@ -528,6 +568,10 @@ thead tr{
     margin-left: 1em;
     margin-right: 1em;
     cursor: pointer;
+}
+
+#back-from-info{
+	display: none;
 }
 
 .nav-item:after {
