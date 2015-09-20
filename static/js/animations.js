@@ -26,22 +26,26 @@ $(window).load(function() {
     $("#item-modal").fadeIn();
 });*/
 
-$(".item-container").hover(function() {
+/*$(".item-container").hover(function() {
     $(this).find(".overlay").fadeIn(200);
 });
 
 $(".item-container").mouseleave(function() {
     $(this).find(".overlay").fadeOut(200);
-});
+});*/
 
-/*$("#item-modal").on('click', function(e) {
+$("#item-modal").on('click', function(e) {
     if(e.target != this){
         return;
     }
     else{
     $(this).fadeOut();
     }
-});*/
+});
+
+$(".item-container").on('click', function(e) {
+    $('body').css('overflow','hidden');
+});
 
 $("#shop-btn").click(function() {
     $("body").scrollTo('#main',800);

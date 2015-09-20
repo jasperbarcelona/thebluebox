@@ -12,8 +12,6 @@ html{
 }
 
 body{
-	overflow: scroll;
-	overflow-x: hidden;
 	width: 100%;
 	height: 100%;
 	overflow: scroll;
@@ -31,6 +29,27 @@ ul{
 
 span{
 	cursor: pointer;
+}
+
+#back-from-info{
+	display: none;
+}
+
+#item-preloader{
+	position: absolute;
+	z-index: 9000;
+	background-color: #FFFFFF;
+	height: 100%;
+	width: 100%;
+	z-index: 9000;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
 }
 
 .item-del-td{
@@ -234,6 +253,7 @@ span{
 }
 
 .item-modal-dialog{
+	position: relative;
 	height: 80% !important;
 	width: 80% !important;
 }
@@ -568,10 +588,6 @@ thead tr{
     margin-left: 1em;
     margin-right: 1em;
     cursor: pointer;
-}
-
-#back-from-info{
-	display: none;
 }
 
 .nav-item:after {

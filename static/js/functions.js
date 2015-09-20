@@ -7,18 +7,20 @@ function select_size(buttonId){
 }
 
 function supply_data(itemId){
-  $('#item-modal').fadeIn();
+  $('#item-preloader').show();
   $.post('/item/info/get',{
         item_id:itemId,
     },
     function(data){
         $("#info-container").html(data);
         selected_size = $('.modal-item-size-active').attr('value')
+        $('#item-preloader').hide();
     });
 }
 
 function close_modal(){
-  $("#item-modal").fadeOut();
+  $("#item-modal").modal('hide');
+  $('body').css('overflow','scroll');
 }
 
 function open_cart(){
