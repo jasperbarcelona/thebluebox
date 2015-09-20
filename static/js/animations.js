@@ -57,11 +57,11 @@ $(window).on('scroll', function(){
     $('#header-background').css('top',-st/3);
     if(st >= 2){
         $(".cart-icon").css("color","#1E2226");
-        $(".cart-icon").css("border","2px solid #1E2226");
+        $(".cart-icon").css("border","1px solid #1E2226");
     }
     else if (st<2){
         $(".cart-icon").css("color","#FFFFFF");
-        $(".cart-icon").css("border","2px solid #FFFFFF");
+        $(".cart-icon").css("border","1px solid #FFFFFF");
     }
 
     if (st >= $('#header').height()){

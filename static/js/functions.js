@@ -20,7 +20,7 @@ function supply_data(itemId){
 
 function close_modal(){
   $("#item-modal").modal('hide');
-  $('body').css('overflow','scroll');
+  $('body').css('overflow-y','scroll');
 }
 
 function open_cart(){
