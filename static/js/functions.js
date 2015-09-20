@@ -49,7 +49,8 @@ function add_to_cart(itemId){
         item_id:itemId,size:selected_size
     },
     function(data){
-        $("#item-modal").fadeOut("toggle");
+        $("#item-modal").modal('hide');
+        $('body').css('overflow-y','scroll');
         var cart = $('.cart-icon');
         var imgtodrag = $("#modal-item-image").eq(0);
         if (imgtodrag) {

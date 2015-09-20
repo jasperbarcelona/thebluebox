@@ -298,6 +298,7 @@ span{
 	align-items: center;
 	-webkit-justify-content: center;
 	justify-content: center;
+	border-radius: 0 !important;
 
 }
 
