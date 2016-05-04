@@ -28,7 +28,7 @@ import os
 app = flask.Flask(__name__)
 db = SQLAlchemy(app)
 app.secret_key = '234234rfascasascqweqscasefsdvqwefe2323234dvsv'
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///local.db'
 # os.environ['DATABASE_URL']
 # 'sqlite:///local.db'
 class Item(db.Model):
@@ -39,10 +39,25 @@ class Item(db.Model):
     price = db.Column(db.Integer())
     image = db.Column(db.String(60))
 
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(30))
+    last_name = db.Column(db.String(30))
+    email = db.Column(db.String(60))
+    password = db.Column(db.String(60))
+    msisdn = db.Column(db.String(11))
+    address = db.Column(db.Text)
+    province = db.Column(db.String(30))
+    city = db.Column(db.String(30))
+    barangay = db.Column(db.String(30))
+
 class IngAdmin(sqla.ModelView):
     column_display_pk = True
+    
 admin = Admin(app)
 admin.add_view(IngAdmin(Item, db.session))
+admin.add_view(IngAdmin(User, db.session))
+
 
 def search_list(values, searchFor):
     for k in values:
@@ -53,10 +68,30 @@ def search_list(values, searchFor):
 
 @app.route('/', methods=['GET', 'POST'])
 def index_route():
+    shirts = Item.query.filter_by(category="pants").all()
+    flavors = Item.query.filter_by(category="flavors").all()
+    mods = Item.query.filter_by(category="mods").all()
+    accessories = Item.query.filter_by(category="accessories").all()
+    return flask.render_template('index.html',
+        shirts=shirts,
+        flavors=flavors,
+        mods=mods,
+        accessories=accessories
+        )
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
     if session:
-        print session['cart_items']
-    pants = Item.query.filter_by(category="pants").all()
-    return flask.render_template('index.html',items=pants)
+        return redirect('/')
+    credentials = flask.request.form.to_dict()
+    user = User.query.filter_by(email=credentials['email'], password=credentials['password']).first()
+    if not user or user == None:
+        return jsonify(status='failed', error='Invalid Account'), 401
+    session['logged_in'] = True
+    session['user_id'] = user.id
+    session['display_name'] = user.first_name
+    return jsonify(status='success'), 200
 
 
 @app.route('/item/info/get', methods=['GET', 'POST'])
@@ -86,7 +121,6 @@ def add_item_to_cart():
             "price":item.price,
             "image":item.image
             }]
-        print session['cart_items']
     else:
         session['cart_items'].append({
             "id":item.id,
@@ -100,7 +134,7 @@ def add_item_to_cart():
     return '',201
 
 
-@app.route('/cart/open', methods=['GET', 'POST'])
+@app.route('/cart', methods=['GET', 'POST'])
 def open_cart():
     if not session:
         return flask.render_template('cart.html')
@@ -108,6 +142,16 @@ def open_cart():
     for i in session['cart_items']:
         session['total'] += (int(i['price']) * int(i['quantity']))
     return flask.render_template('cart.html',cart=session['cart_items'], total=session['total'])
+
+
+@app.route('/checkout', methods=['GET', 'POST'])
+def checkout():
+    if not session:
+        return flask.render_template('checkout.html')
+    session['total'] = 0
+    for i in session['cart_items']:
+        session['total'] += (int(i['price']) * int(i['quantity']))
+    return flask.render_template('checkout.html',cart_items=session['cart_items'], total=session['total'])
 
 
 @app.route('/favicon.ico', methods=['GET', 'POST'])
@@ -157,7 +201,7 @@ def rebuild_database():
     item = Item(
         name="Eric Coston SW",
         category="pants",
-        description="This is the item's description.",
+        description="This is the item's description. It must be at least this long for it to look good.",
         price=260,
         image="../static/images/pants1.jpg"
         )
@@ -167,7 +211,7 @@ def rebuild_database():
     item = Item(
         name="Eric Coston SW",
         category="pants",
-        description="This is the item's description.",
+        description="This is the item's description. It must be at least this long for it to look good.",
         price=260,
         image="../static/images/pants2.jpg"
         )
@@ -177,7 +221,7 @@ def rebuild_database():
     item = Item(
         name="Eric Coston SW",
         category="pants",
-        description="This is the item's description.",
+        description="This is the item's description. It must be at least this long for it to look good.",
         price=260,
         image="../static/images/pants3.jpg"
         )
@@ -187,7 +231,7 @@ def rebuild_database():
     item = Item(
         name="Eric Coston SW",
         category="pants",
-        description="This is the item's description.",
+        description="This is the item's description. It must be at least this long for it to look good.",
         price=260,
         image="../static/images/pants4.jpg"
         )
@@ -197,7 +241,7 @@ def rebuild_database():
     item = Item(
         name="Eric Coston SW",
         category="pants",
-        description="This is the item's description.",
+        description="This is the item's description. It must be at least this long for it to look good.",
         price=260,
         image="../static/images/pants5.jpg"
         )
@@ -207,7 +251,7 @@ def rebuild_database():
     item = Item(
         name="Eric Coston SW",
         category="pants",
-        description="This is the item's description.",
+        description="This is the item's description. It must be at least this long for it to look good.",
         price=260,
         image="../static/images/pants.jpg"
         )
@@ -217,7 +261,7 @@ def rebuild_database():
     item = Item(
         name="Eric Coston SW",
         category="shirts",
-        description="This is the item's description.",
+        description="This is the item's description. It must be at least this long for it to look good.",
         price=260,
         image="../static/images/pants1.jpg"
         )
@@ -227,7 +271,7 @@ def rebuild_database():
     item = Item(
         name="Eric Coston SW",
         category="shirts",
-        description="This is the item's description.",
+        description="This is the item's description. It must be at least this long for it to look good.",
         price=260,
         image="../static/images/pants2.jpg"
         )
@@ -237,7 +281,7 @@ def rebuild_database():
     item = Item(
         name="Eric Coston SW",
         category="shirts",
-        description="This is the item's description.",
+        description="This is the item's description. It must be at least this long for it to look good.",
         price=260,
         image="../static/images/pants3.jpg"
         )
@@ -247,7 +291,7 @@ def rebuild_database():
     item = Item(
         name="Eric Coston SW",
         category="shirts",
-        description="This is the item's description.",
+        description="This is the item's description. It must be at least this long for it to look good.",
         price=260,
         image="../static/images/pants4.jpg"
         )
@@ -257,7 +301,7 @@ def rebuild_database():
     item = Item(
         name="Eric Coston SW",
         category="shoes",
-        description="This is the item's description.",
+        description="This is the item's description. It must be at least this long for it to look good.",
         price=260,
         image="../static/images/pants5.jpg"
         )
@@ -267,7 +311,7 @@ def rebuild_database():
     item = Item(
         name="Eric Coston SW",
         category="shoes",
-        description="This is the item's description.",
+        description="This is the item's description. It must be at least this long for it to look good.",
         price=260,
         image="../static/images/pants.jpg"
         )
@@ -277,7 +321,7 @@ def rebuild_database():
     item = Item(
         name="Eric Coston SW",
         category="shoes",
-        description="This is the item's description.",
+        description="This is the item's description. It must be at least this long for it to look good.",
         price=260,
         image="../static/images/pants1.jpg"
         )
@@ -287,7 +331,7 @@ def rebuild_database():
     item = Item(
         name="Eric Coston SW",
         category="shoes",
-        description="This is the item's description.",
+        description="This is the item's description. It must be at least this long for it to look good.",
         price=260,
         image="../static/images/pants2.jpg"
         )
@@ -297,7 +341,7 @@ def rebuild_database():
     item = Item(
         name="Eric Coston SW",
         category="pants",
-        description="This is the item's description.",
+        description="This is the item's description. It must be at least this long for it to look good.",
         price=260,
         image="../static/images/pants3.jpg"
         )
@@ -307,7 +351,7 @@ def rebuild_database():
     item = Item(
         name="Eric Coston SW",
         category="pants",
-        description="This is the item's description.",
+        description="This is the item's description. It must be at least this long for it to look good.",
         price=260,
         image="../static/images/pants4.jpg"
         )
@@ -317,11 +361,21 @@ def rebuild_database():
     item = Item(
         name="Eric Coston SW",
         category="pants",
-        description="This is the item's description.",
+        description="This is the item's description. It must be at least this long for it to look good.",
         price=260,
         image="../static/images/pants5.jpg"
         )
     db.session.add(item)
+    db.session.commit()
+
+    user = User(
+        first_name='Jasper',
+        last_name='Barcelona',
+        email='barcelona.jasperoliver@gmail.com',
+        password='ratmaxi8',
+        msisdn='09159484200'
+        )
+    db.session.add(user)
     db.session.commit()
 
     return 'ok'
@@ -329,4 +383,4 @@ def rebuild_database():
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(port=int(os.environ['PORT']), host='0.0.0.0')
+    app.run()

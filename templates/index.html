@@ -6,66 +6,152 @@
         <link rel="stylesheet" href="../static/css/bootstrap.css.map">
         <link rel="stylesheet" href="../static/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="../static/css/bootstrap-theme.css.map">
-		<link rel="stylesheet" media="screen and (min-width: 0px) and (max-width: 768px)" href="../static/css/xs.css">
-		<link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1500px)" href="../static/css/style.css">
-        <title>TheBlueBox</title>
+		<link rel="stylesheet" href="../static/css/icon.css" >
+		
+		<link rel="stylesheet" media="screen and (min-width: 0px) and (max-width: 750px)" href="../static/css/xs.css">
+		<link rel="stylesheet" media="screen and (min-width: 750px) and (max-width: 950px)" href="../static/css/small.css">
+		<link rel="stylesheet" media="screen and (min-width: 950px) and (max-width: 1500px)" href="../static/css/style.css">
+        <title>Shop | Puffletes</title>
 	</head>
 	<body>
+		<div id="preloader">
+			<div id="intro-logo">
+				P
+				<div class="intro-loader"></div>
+			</div>
+		</div>
 		<div class="container">
-			<div class="cart-icon" onclick="open_cart()">
+			<a href="/cart">
+			<div class="cart-icon">
 				<span class="glyphicon glyphicon-shopping-cart"></span>
 			</div>
-
-			<!-- <div id="preloader">
-				Put preloader gif here
-			</div> -->
-
-			<div id="header">
+			</a>
+			
+			<div id="banner">
+			<div class="banner-header">
+				<div class="header-left">
+					<div id="logo">P</div>
+				</div>
+				<div class="header-right">
+					<div class="login-options-container">
+						<span id="login-btn">Log In</span>
+						<button type="button" id="signup-btn" class="btn">Sign Up</button>
+					</div>
+					<div class="header-nav-container">
+						<span class="header-nav-item">Shop</span>
+						<span class="header-separator">|</span>
+						<span class="header-nav-item">Events</span>
+						<span class="header-separator">|</span>
+						<span class="header-nav-item">News</span>
+					</div>
+				</div>
+			</div>
 			<div id="black-overlay"></div>
-			<div id="header-background"></div>
+			<div id="banner-background"></div>
 				<div id="brand-container">
-					<span class="brand">The Blue Box</span><br />
-					<center>
+					<span class="brand">Puffletes</span>
+					<span class="brand-motto">We're more than just a community.</span>
 					<button id="shop-btn" type="button" class="btn">SHOP NOW</button>
-					</center>
+				</div>
+			</div>
+			<div class="header">
+				<div class="header-left">
+					<div id="logo">P</div>
+				</div>
+				<div class="header-right">
+					<div class="login-options-container">
+						<span id="login-btn">Log In</span>
+						<button type="button" id="signup-btn" class="btn">Sign Up</button>
+					</div>
+					<div class="header-nav-container">
+						<span class="header-nav-item">Shop</span>
+						<span class="header-separator">|</span>
+						<span class="header-nav-item">Events</span>
+						<span class="header-separator">|</span>
+						<span class="header-nav-item">News</span>
+					</div>
 				</div>
 			</div>
 			<div id="main">
 				<div id="navigation">
 					<ul>
-						<li class="nav-item active-nav-item">SHIRTS</li>
-				        <li class="nav-item">PANTS</li>
-				        <li class="nav-item">SHOES</li>
-				        <li class="nav-item">ACCESSORIES</li>
-						<!-- <div id="nav-cart-container" class="nav-item">
-							<li id="nav-cart">SHOPPING CART</li>
-							<div class="notification-bubble">2</div>
-						</div> -->
+						<li id="shirts-nav" class="nav-li one active" onclick="change_tab('shirts')"><span class="nav-item">Shirts</span></li>
+						<li id="flavors-nav" class="nav-li two" onclick="change_tab('flavors')"><span class="nav-item">Flavors</span></li>
+						<li id="mods-nav" class="nav-li three" onclick="change_tab('mods')"><span class="nav-item">Mods</span></li>
+						<li id="accessories-nav" class="nav-li four" onclick="change_tab('accessories')"><span class="nav-item">Accessories</span></li>
+						<hr />
 					</ul>
 				</div>
-				<br />
-				{% for i in items %}
-				<div id="{{i.id}}" class="item-container col-md-3 col-sm-4 col-xs-12" data-toggle="modal" data-target="#item-modal" onclick="supply_data(this.id)">
-					<div class="item-image-container">
-						<img src="{{i.image}}">
-					</div>
-					<div class="item-info-container">
-						<span class="item-name">{{i.name}}</span>
-						<span class="item-pipe">|</span>
-						<span class="item-price">&#8369;{{i.price}}.00</span>
+				<div class="main-container">
+					<div class="main-items-container">
+						<div id="shirts" class="items-container">
+							{% for i in shirts %}
+							<div id="{{i.id}}" class="item-container col-md-3 col-sm-4 col-xs-12" data-toggle="modal" data-target="#item-modal" onclick="supply_data(this.id)">
+								<div class="item-image-container">
+									<img src="{{i.image}}">
+								</div>
+								<div class="item-info-container">
+									<span class="item-name">{{i.name}}</span>
+									<span class="item-pipe">|</span>
+									<span class="item-price">&#8369;{{i.price}}.00</span>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+						<div id="flavors" class="items-container">
+							{% for i in flavors %}
+							<div id="{{i.id}}" class="item-container col-md-3 col-sm-4 col-xs-12" data-toggle="modal" data-target="#item-modal" onclick="supply_data(this.id)">
+								<div class="item-image-container">
+									<img src="{{i.image}}">
+								</div>
+								<div class="item-info-container">
+									<span class="item-name">{{i.name}}</span>
+									<span class="item-pipe">|</span>
+									<span class="item-price">&#8369;{{i.price}}.00</span>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+						<div id="mods" class="items-container">
+							{% for i in mods %}
+							<div id="{{i.id}}" class="item-container col-md-3 col-sm-4 col-xs-12" data-toggle="modal" data-target="#item-modal" onclick="supply_data(this.id)">
+								<div class="item-image-container">
+									<img src="{{i.image}}">
+								</div>
+								<div class="item-info-container">
+									<span class="item-name">{{i.name}}</span>
+									<span class="item-pipe">|</span>
+									<span class="item-price">&#8369;{{i.price}}.00</span>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+						<div id="accessories" class="items-container">
+							{% for i in accessories %}
+							<div id="{{i.id}}" class="item-container col-md-3 col-sm-4 col-xs-12" data-toggle="modal" data-target="#item-modal" onclick="supply_data(this.id)">
+								<div class="item-image-container">
+									<img src="{{i.image}}">
+								</div>
+								<div class="item-info-container">
+									<span class="item-name">{{i.name}}</span>
+									<span class="item-pipe">|</span>
+									<span class="item-price">&#8369;{{i.price}}.00</span>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
 					</div>
 				</div>
-				{% endfor %}
 			</div>
 			<div id="item-modal">
-	                <div class="item-modal-dialog">
-	                        <div class="modal-content">
-	                        	<div id="item-preloader">
-	                        	<img src="../static/images/282.GIF">
-								</div>
-	                            <div id="info-container"></div>
-	                        </div><!-- /.modal-content -->
-	                </div><!-- /.modal-dialog -->
+                <div class="item-modal-dialog">
+                        <div class="modal-content">
+                        	<div id="item-preloader">
+                        	<img src="../static/images/282.GIF">
+							</div>
+                            <div id="info-container"></div>
+                        </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
 	        </div>
 		</div>
 
@@ -74,6 +160,7 @@
         <script src="../static/js/jquery.scrollTo.min.js"></script>
         <script src="../static/js/bootstrap.min.js"></script>
         <script src="../static/js/functions.js"></script>
+        <script src="../static/js/floatlabels.min.js"></script>
         <script src="../static/js/easing.js"></script>
         <script src="../static/js/jquery-ui.js"></script>
 	</body>

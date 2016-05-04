@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/bootstrap.css.map">
+    <link rel="stylesheet" href="../static/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../static/css/bootstrap-theme.css.map">
+    <link rel="stylesheet" href="../static/css/icon.css" >
+
+	<link rel="stylesheet" media="screen and (min-width: 0px) and (max-width: 768px)" href="../static/css/xs.css">
+	<link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 850px)" href="../static/css/small.css">
+	<link rel="stylesheet" media="screen and (min-width: 850px) and (max-width: 1500px)" href="../static/css/style.css">
+	<title>Checkout | Puffletes</title>
+</head>
+<body>
+	<div class="header-fixed">
+		<div class="header-left">
+			<a href="/">
+				<div id="logo">P</div>
+			</a>
+		</div>
+		<div class="header-right">
+			<div class="breadcrumbs-container">
+				<span class="breadcrumbs active">Login</span>
+				<span class="breadcrumb-separator">></span>
+				<span class="breadcrumbs">Shipping</span>
+				<span class="breadcrumb-separator">></span>
+				<span class="breadcrumbs">Payment</span>
+			</div>
+		</div>
+	</div>
+	<div class="checkout-container">
+		<div class="checkout-left">
+			<ul class="nav nav-tabs">
+				<li class="active">
+					<a href="#signup-tab" class="tab-item" data-toggle="tab" onclick="change_tab('programs')">Sign Up</a>
+				</li>  
+				<li>
+					<a href="#login-tab" class="tab-item" data-toggle="tab" onclick="change_tab('users')">Log In</a>
+				</li>      
+	        </ul>
+	        <div class="tab-content checkout-tab-content">
+	        	<div class="tab-pane active" id="signup-tab">
+	        		<div class="login-container">
+	        			<div class="login-form">
+		        			<span class="checkout-login-label">Don't have an account? Sign up for free!</span>
+		        			<div class="input-container">
+			        			<input type="text" data-class="input-label" class="form-control" id="checkout_first_name" placeholder="First Name">
+			        			<i id="checkout-first-name-error" class="material-icons input-error-icon">&#xE000;</i>
+			        		</div>
+			        		<div class="input-container">
+			        			<input type="text" data-class="input-label" class="form-control" id="checkout_last_name" placeholder="Last Name">
+			        			<i id="checkout-last-name-error" class="material-icons input-error-icon">&#xE000;</i>
+			        		</div>
+			        		<div class="input-container">
+			        			<input type="email" data-class="input-label" class="form-control" id="checkout_email" placeholder="Email">
+			        			<i id="checkout-email-error" class="material-icons input-error-icon">&#xE000;</i>
+			        		</div>
+			        		<div class="input-container">
+			        			<input type="password" data-class="input-label" class="form-control" id="checkout_password" data-class="input-label" placeholder="Password">
+			        			<i id="checkout-password-error" class="material-icons input-error-icon">&#xE000;</i>
+			        		</div>
+			        		<div class="input-container">
+			        			<input type="password" data-class="input-label" class="form-control" id="checkout_confirm_password" placeholder="Confirm Password">
+			        			<i id="checkout-confirm-password-error" class="material-icons input-error-icon">&#xE000;</i>
+			        		</div>
+			        		<div class="input-container">
+			        			<input type="text" data-class="input-label" class="form-control" id="checkout_msisdn" placeholder="Cell Phone Number (09151234567)">
+			        			<i id="checkout-msisdn-error" class="material-icons input-error-icon">&#xE000;</i>
+			        		</div>
+			        		<br />
+			        		<button type="button" class="btn next-btn" id="signup-btn">Continue</button>
+		        		</div>
+	        		</div>
+	        	</div>
+	        	<div class="tab-pane" id="login-tab">
+	        		<div class="login-container">
+	        			<div class="login-form">
+		        			<span class="checkout-login-label">Log in to your account.</span>
+			        		<input type="email" class="form-control" id="email" placeholder="Email">
+			        		<input type="password" class="form-control" id="password" placeholder="Password">
+			        		<br />
+			        		<button type="button" class="btn next-btn" id="signup-btn">Continue</button>
+		        		</div>
+	        		</div>
+	        	</div>
+	        </div>
+		</div>
+		<div class="checkout-right">
+			<div id="cart-items-panel" class="panel">
+				<div class="panel-heading">
+					<h3 class="panel-title">Cart Items</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table cart-items-table">
+						<thead>
+							<tr>
+								<th class="item-th">Item</th>
+								<th class="qty-th">Qty</th>
+								<th class="price-th">Price</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for item in cart_items %}
+							<tr>
+								<td class="item-td">
+									<div class="cart-items-img-container">
+										<img class="cart-items-img" src="{{item.image}}">
+									</div>
+									<div class="cart-items-info-container">
+										<div>
+											<span class="cart-items-name">{{item.name}}</span><br>
+											<span class="cart-items-size">Size: {{item.size}}</span>
+										</div>
+									</div>
+								</td>
+								<td class="qty-td">1</td>
+								<td class="price-td">&#8369;{{item.price}}.00</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					<table class="table charges-table">
+						<tbody>
+							<tr>
+								<td class="cart-items-total-label-td">Sub Total</td>
+								<td class="cart-items-total-td">&#8369;{{total}}.00</td>
+							</tr>
+							<tr>
+								<td class="cart-items-total-label-td">Shipping</td>
+								<td class="cart-items-total-td">&#8369;0.00</td>
+							</tr>
+							<tr>
+								<td class="cart-items-total-label-td">Grand Total</td>
+								<td class="cart-items-total-td">&#8369;260.00</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="../static/js/jquery-1.11.0.min.js"></script>
+	<script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/functions.js"></script>
+    <script src="../static/js/animations.js"></script>
+    <script src="../static/js/floatlabels.min.js"></script>
+    <script src="../static/js/easing.js"></script>
+</body>
+</html>

@@ -1,64 +1,103 @@
-<div id="cart-container">
-	<center>
-		<span id="cart-brand">SHOPPING CART</span>
-		<table class="cart-table">
-			<thead>
-				<tr>
-					<th class="item-image-td"></th>
-					<th class="item-info-td">PRODUCT</th>
-					<th class="item-qty-td">QUANTITY</th>
-					<th class="item-price-td">PRICE</th>
-					<th class="item-del-td"></th>
-				</thead>
-				</tr>
-			<tbody>
-				{% for item in cart %}
-				<tr class="rows">
-					<td class="item-image-td">
-						<center>
-							<img id="cart-item-image" src="{{item.image}}">
-						</center>
-					</td>
-					<td class="item-info-td">
-						<span id="cart-item-name">{{item.name}}</span><br />
-						<span id="cart-item-size">Size: {{item.size}}</span>
-					</td>
-					<td class="item-qty-td">
-						<span class="quantity-control quantity-minus" onclick="quantity_control('cart-'+{{(item.id)}}, 'deduct')">-</span>
-						 <span id="cart-{{(item.id)}}" class="cart-item-qty">{{item.quantity}}</span>
-						<span class="quantity-control quantity-add" onclick="quantity_control('cart-'+{{(item.id)}}, 'add')">+</span>
-					</td>
-					<td class="item-price-td">
-						&#8369;<span class="cart-{{(item.id)}}" price="{{item.price}}">{{item.price|int * item.quantity|int}}</span>.00
-					</td>
-					<td class="item-del-td">
-						<span id="{{item.id}}" class="glyphicon glyphicon-trash"></span>
-					</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-		<table class="total-table">
-			<tr class="total-tr">
-				<td class="total-td total-label-td">
-					TOTAL:
-				</td>
-				<td class="total-td total-amount-td">
-					&#8369;<span id="cart-total">{{total}}</span>.00
-				</td>
-			</tr>
-		</table>
-		<div id="cart-btn-container">
-			<button type="button" id="continue-shopping" class="btn cart-btn">CONTINUE SHOPPING</button>
-			<button type="button" id="proceed-to-checkout" class="btn cart-btn">PROCEED TO CHECKOUT</button>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../static/css/bootstrap.css.map">
+        <link rel="stylesheet" href="../static/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="../static/css/bootstrap-theme.css.map">
+		<link rel="stylesheet" media="screen and (min-width: 0px) and (max-width: 768px)" href="../static/css/xs.css">
+		<link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 850px)" href="../static/css/small.css">
+		<link rel="stylesheet" media="screen and (min-width: 850px) and (max-width: 1500px)" href="../static/css/style.css">
+        <title>Cart | Puffletes</title>
+	</head>
+	<body>
+		<div class="header-fixed">
+			<div class="header-left">
+				<a href="/">
+					<div id="logo">P</div>
+				</a>
+			</div>
+			<div class="header-right">
+				<div class="login-options-container">
+					<span id="login-btn">Log In</span>
+					<button type="button" id="signup-btn" class="btn">Sign Up</button>
+				</div>
+				<div class="header-nav-container">
+					<span class="header-nav-item">Shop</span>
+					<span class="header-separator">|</span>
+					<span class="header-nav-item">Events</span>
+					<span class="header-separator">|</span>
+					<span class="header-nav-item">News</span>
+				</div>
+			</div>
 		</div>
-	</center>
-</div>
+		<div id="cart-container">
+			<center>
+				<span class="sub-brand">SHOPPING CART</span>
+				<table class="cart-table">
+					<thead>
+						<tr>
+							<th class="item-image-td"></th>
+							<th class="item-info-td">PRODUCT</th>
+							<th class="item-qty-td">QUANTITY</th>
+							<th class="item-price-td">PRICE</th>
+							<th class="item-del-td"></th>
+						</tr>
+					</thead>	
+					<tbody>
+						{% for item in cart %}
+						<tr class="rows">
+							<td class="item-image-td">
+								<center>
+									<img id="cart-item-image" src="{{item.image}}">
+								</center>
+							</td>
+							<td class="item-info-td">
+								<span id="cart-item-name">{{item.name}}</span><br />
+								<span id="cart-item-size">Size: {{item.size}}</span>
+							</td>
+							<td class="item-qty-td">
+								<span class="quantity-control quantity-minus" onclick="quantity_control('cart-'+{{(item.id)}}, 'deduct')">-</span>
+								 <span id="cart-{{(item.id)}}" class="cart-item-qty">{{item.quantity}}</span>
+								<span class="quantity-control quantity-add" onclick="quantity_control('cart-'+{{(item.id)}}, 'add')">+</span>
+							</td>
+							<td class="item-price-td">
+								&#8369;<span class="cart-{{(item.id)}}" price="{{item.price}}">{{item.price|int * item.quantity|int}}</span>.00
+							</td>
+							<td class="item-del-td">
+								<span id="{{item.id}}" class="glyphicon glyphicon-trash"></span>
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				<table class="total-table">
+					<tr class="total-tr">
+						<td class="total-td total-label-td">
+							TOTAL:
+						</td>
+						<td class="total-td total-amount-td">
+							&#8369;<span id="cart-total">{{total}}</span>.00
+						</td>
+					</tr>
+				</table>
+				<div id="cart-btn-container">
+					<a href="/">
+						<button type="button" id="continue-shopping" class="btn cart-btn">CONTINUE SHOPPING</button>
+					</a>
+					<a href="/checkout">
+						<button type="button" id="proceed-to-checkout" class="btn cart-btn">PROCEED TO CHECKOUT</button>
+					</a>
+				</div>
+			</center>
+		</div>
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('#cart-container').css('height',($('#header').height()));
-	})
-</script>
-
+		<script src="../static/js/jquery-1.11.0.min.js"></script>
+		<script src="../static/js/bootstrap.min.js"></script>
+        <script src="../static/js/functions.js"></script>
+        <script src="../static/js/animations.js"></script>
+        <script src="../static/js/easing.js"></script>
+	</body>
+</html>
 

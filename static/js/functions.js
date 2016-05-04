@@ -1,4 +1,32 @@
 var selected_size = '';
+var current_tab = '';
+
+function change_tab(tab){
+  current_tab = tab;
+  var $this = jQuery('.nav-li');
+  if ($this.data('activated')) return false;  // Pending, return
+  $this.data('activated', true);
+  setTimeout(function() {
+    $this.data('activated', false)
+  }, 500); // Freeze for 500ms
+
+  $('.nav-li').removeClass('active');
+  $('#'+tab+'-nav').addClass('active');
+
+  st = $(this).scrollTop();
+  if (st < $('#banner').height()-60){
+    $(window).scrollTo('.main-items-container',{
+      duration: 800,
+      offset: -140
+    });
+  }
+  setTimeout(function(){ 
+    $('.main-container').scrollTo('#'+tab,{
+      duration: 800
+    });
+    onScrollInit( $('.'+tab) );
+  }, 0);
+}
 
 function select_size(buttonId){
   selected_size = $('#'+buttonId).attr('value');
@@ -72,17 +100,48 @@ function add_to_cart(itemId){
                     'width': 75,
                     'height': 75
             }, 1000, 'easeInOutExpo');
- 
+
             setTimeout(function () {
                 cart.effect("shake", {
                     times: 2
                 }, 200);
             }, 1500);
- 
+
             imgclone.animate({
                 'width': 0,
                 'height': 0
             });
         }
     });
-    }
+}
+
+function onScrollInit( items, trigger ) {
+  items.each( function() {
+    var osElement = $(this),
+        osAnimationClass = osElement.attr('data-os-animation'),
+        osAnimationDelay = osElement.attr('data-os-animation-delay');
+ 
+    osElement.css({
+        '-webkit-animation-delay':  osAnimationDelay,
+        '-moz-animation-delay':     osAnimationDelay,
+        'animation-delay':          osAnimationDelay
+    });
+ 
+    var osTrigger = ( trigger ) ? trigger : osElement;
+ 
+    osTrigger.waypoint(function() {
+        osElement.addClass('animated').addClass(osAnimationClass);
+    },{
+        triggerOnce: true,
+        offset: '70%'
+    });
+  });
+}
+
+function validate_non_numeric(value){    
+    var re = /^[a-zA-z]+( [a-zA-z]+)*$/;
+    if(re.test(value))
+       return true;
+    else
+       return false;    
+}
